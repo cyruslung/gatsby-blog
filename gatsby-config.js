@@ -28,6 +28,14 @@ module.exports = {
       },
     },
     `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId:"3uaeu4rxc51m",
+        accessToken:"klyMztikgtixidQzIqUmLOdySOM2MPvzmXN_gM17LT8",
+      }
+    },
+    'gatsby-transformer-remark',
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
