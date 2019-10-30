@@ -1,22 +1,22 @@
 import React from "react"
 
-const PostPreview = (props) => (
+const PostPreview = (props) => {
+  const post = props.data
+  return (
   <>
     <div className="post-preview">
-      <a href="post.html">
+      <a href={`blog/${post.slug}`}>
           <h2 className="post-title">
-          Man must explore, and this is exploration at its greatest
+          {post.title}
           </h2>
           <h3 className="post-subtitle">
-          Problems look mighty small from 150 miles up
+          {post.subTitle}
           </h3>
       </a>
-      <p className="post-meta">Posted by
-          <a href="#">Start Bootstrap</a>
-          on September 24, 2019</p>
+      <p className="post-meta">Posted by {post.author.name} on {post.publishDate}</p>
     </div>
     <hr/>
   </>
-)
+)}
 export default PostPreview
 
