@@ -5,7 +5,7 @@ const PostPreview = (props) => {
   return (
   <>
     <div className="post-preview">
-      <Link to={`blog/${post.slug}`}>
+      <Link to={`/blog/${post.slug}`}>
         <h2 className="post-title">
         {post.title}
         </h2>

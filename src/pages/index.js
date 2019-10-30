@@ -1,12 +1,16 @@
-import React from "react"
+import React, { useState } from "react"
 import Layout from "../components/layout"
 import PostPreview from "../components/post-preview"
 
 const IndexPage = (props) => {
-
+  /*
+    使用useState這個hook，將chunk訂為state，並且setChunk為更改chunk的函式。
+    postBoby根據chunk*5的數量來顯示文章，每按一次按鈕，多5篇文章。
+  */
+  const [chunk, setChunk] = useState(1)
   const head = props.data.allContentfulHead.edges[0].node
   const posts = props.data.allContentfulPost.edges
-  const postBoby = posts.map((post)=><PostPreview key={post.node.slug} data={post.node}/>)
+  const postBoby = posts.slice(0, 5*chunk).map((post)=><PostPreview key={post.node.slug} data={post.node}/>)
 
   return (
   <Layout>
@@ -27,8 +31,10 @@ const IndexPage = (props) => {
       <div className="row">
         <div className="col-lg-8 col-md-10 mx-auto">
           {postBoby}
-          <div className="clearfix">
-            <a className="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+          {/* 根據顯示的文章數是否小於總文章數，來決定按鈕是否顯示 */}
+          <div className="clearfix" style={{display: 5*chunk<posts.length ? 'block' : 'none' }}>
+            {/* 按下按鈕，觸發setChunk，將chunk變為chunk+1，並且因為state改變，因此組件觸發重新渲染 */}
+            <a className="btn btn-primary float-right" onClick={() => setChunk(chunk + 1)}>Older Posts &rarr;</a>
           </div>
         </div>
       </div>
@@ -55,7 +61,7 @@ query indexQuery {
       }
     }
   }
-  allContentfulPost {
+  allContentfulPost(sort: { fields: [publishDate], order: DESC }) {
     edges {
       node {
         slug
