@@ -1,5 +1,6 @@
 import React from "react"
 import Layout from "./layout"
+import CommentArea from "./comment-area"
 
 const PostPage = (props) => {
   const post = props.data.contentfulPost
@@ -30,51 +31,7 @@ const PostPage = (props) => {
       </div>
     </article>
 
-    <div style={{background: "#f7f7f7", padding: "30px 0"}}>
-      <div className="container">
-        <row>
-          <form className="col-lg-8 col-md-10 mx-auto">
-            <div className="form-group">
-              <label for="FormControlInput">使用者名稱</label>
-              <input type="email" className="form-control" id="FormControlInput"/>
-            </div>
-            <div className="form-group">
-              <label for="FormControlTextarea">留言</label>
-              <textarea className="form-control" id="FormControlTextarea" rows="6"></textarea>
-            </div>
-            <button type="button" className="btn btn-secondary btn-sm">Submit</button>
-          </form>
-        </row>
-      </div>
-
-      <div className="container" style={{padding: "70px auto 70px", padding: "30px 20px 0"}}>
-        <div className="row">
-          <div className="col-lg-9 col-md-10 mx-auto" style={{background: "#F1F1F1", padding: "10px 15px", marginBottom: "20px"}}>
-              <h5> title</h5>
-              <p>感謝版主</p>
-              <p style={{fontSize: "18px", color: "#888888", background: "#E3E3E3", padding: "20px", margin: "0", maxWidth: "550px"}}>版主: 謝謝指教</p>
-              <span style={{float: "right", fontSize: "18px", color: "#888888"}}>Hong edited on 2018-01-25 00:25</span>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-lg-9 col-md-10 mx-auto" style={{background: "#F1F1F1", padding: "10px 15px", marginBottom: "20px"}}>
-              <h5> title</h5>
-              <p>感謝版主</p>
-              <p style={{fontSize: "18px", color: "#888888", background: "#E3E3E3", padding: "20px", margin: "0", maxWidth: "550px"}}>版主: 謝謝指教</p>
-              <span style={{float: "right", fontSize: "18px", color: "#888888"}}>Hong edited on 2018-01-25 00:25</span>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-lg-9 col-md-10 mx-auto" style={{background: "#F1F1F1", padding: "10px 15px", marginBottom: "20px"}}>
-              <h5> title</h5>
-              <p>感謝版主</p>
-              <p style={{fontSize: "18px", color: "#888888", background: "#E3E3E3", padding: "20px", margin: "0", maxWidth: "550px"}}>版主: 謝謝指教</p>
-              <span style={{float: "right", fontSize: "18px", color: "#888888"}}>Hong edited on 2018-01-25 00:25</span>
-          </div>
-        </div>
-      </div>
-      
-    </div>
+    <CommentArea postId={post.id} />
 
   </Layout>
 )}
@@ -83,6 +40,7 @@ export default PostPage
 export const pageQuery = graphql`
   query PostBySlug($slug: String!) {
     contentfulPost(slug: { eq: $slug }) {
+      id
       title
       subTitle
       slug
