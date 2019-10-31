@@ -4,6 +4,7 @@ import CommentArea from "./comment-area"
 
 const PostPage = (props) => {
   const post = props.data.contentfulPost
+  console.log(post)
   return (
   <Layout>
     <header className="masthead" style={{backgroundImage: `url('${post.image.file.url}')`}}>
@@ -31,7 +32,7 @@ const PostPage = (props) => {
       </div>
     </article>
 
-    <CommentArea postId={post.id} />
+    <CommentArea postId={post.contentful_id} />
 
   </Layout>
 )}
@@ -40,7 +41,7 @@ export default PostPage
 export const pageQuery = graphql`
   query PostBySlug($slug: String!) {
     contentfulPost(slug: { eq: $slug }) {
-      id
+      contentful_id
       title
       subTitle
       slug
