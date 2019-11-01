@@ -75,3 +75,8 @@ img::-moz-selection {
   color: $white;
   background: transparent;
 }
+
+.content-area p img {
+  width: 100%;
+  display: block;
+}

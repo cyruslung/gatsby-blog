@@ -2,7 +2,7 @@ import React from "react"
 
 const Comment = (props) => {
   const data = props.data
-//   console.log(data)
+  // console.log(data,111)
   return (
     <div className="row">
         <div className="col-lg-9 col-md-10 mx-auto" style={{background: "#F1F1F1", padding: "10px 15px", marginBottom: "20px"}}>

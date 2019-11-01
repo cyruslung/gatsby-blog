@@ -17,9 +17,10 @@ const CommentArea = (props) => {
       'sys.id': postId,
     })
     .then((response) => {
-      // console.log(response)
-      if(response.items[0].fields.hasOwnProperty("comments") && response.items[0].fields.comments.hasOwnProperty("fields")) {
-        setComments(response.items[0].fields.comments)
+      // console.log(response,1111)
+      if(response.items[0].fields.hasOwnProperty("comments")) {
+        const result = response.items[0].fields.comments.filter(comment => comment.hasOwnProperty("fields"));
+        setComments(result)
       }
     })
     .catch(console.error)
@@ -56,20 +57,23 @@ const CommentArea = (props) => {
       clientSpace
       .then((space)=>space.getEntry(postId))
       .then((entry) => {
-        const add = {
+        let add = {
         sys:{
           type: "Link",
           linkType: "Entry",
           id: newEntry.sys.id
           }
         }
-        console.log(entry)
-        entry.fields.comments = {"en-US":[]}
+        console.log(add)
+        if(!entry.fields.comments.hasOwnProperty("en-US")){
+          entry.fields.comments = {"en-US":[]}
+        }
         entry.fields.comments["en-US"].push(add)
         console.log(entry.fields.comments)
         return entry.update()
       })
       .then((entry) => {
+        // console.log(entry)
         entry.publish()
       })
       .then(()=>{
@@ -81,7 +85,7 @@ const CommentArea = (props) => {
 
   useEffect(()=>{
     getComments();
-  })
+  },[])
 
 
   return (
