@@ -17,7 +17,6 @@ const CommentArea = (props) => {
       'sys.id': postId,
     })
     .then((response) => {
-      // console.log(response,1111)
       if(response.items[0].fields.hasOwnProperty("comments")) {
         const result = response.items[0].fields.comments.filter(comment => comment.hasOwnProperty("fields"));
         setComments(result)
@@ -35,7 +34,6 @@ const CommentArea = (props) => {
         setInput({...input, text: e.target.value});
         break;
     }
-    console.log(e)
   }
 
   const clickHandler = () => {
@@ -64,20 +62,18 @@ const CommentArea = (props) => {
           id: newEntry.sys.id
           }
         }
-        console.log(add)
-        if(!entry.fields.comments.hasOwnProperty("en-US")){
+        if(!entry.fields.hasOwnProperty("comments")){
           entry.fields.comments = {"en-US":[]}
         }
         entry.fields.comments["en-US"].push(add)
-        console.log(entry.fields.comments)
         return entry.update()
       })
       .then((entry) => {
-        // console.log(entry)
         entry.publish()
       })
       .then(()=>{
-        getComments()
+        setTimeout(getComments,3000)
+        
       })
       .catch(console.error)
     })

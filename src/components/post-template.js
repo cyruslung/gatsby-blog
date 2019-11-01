@@ -4,7 +4,6 @@ import CommentArea from "./comment-area"
 
 const PostPage = (props) => {
   const post = props.data.contentfulPost
-  console.log(post)
   return (
   <Layout>
     <header className="masthead" style={{backgroundImage: `url('${post.image.file.url}')`}}>
