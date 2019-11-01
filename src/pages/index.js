@@ -34,7 +34,7 @@ const IndexPage = (props) => {
           {/* 根據顯示的文章數是否小於總文章數，來決定按鈕是否顯示 */}
           <div className="clearfix" style={{display: 5*chunk<posts.length ? 'block' : 'none' }}>
             {/* 按下按鈕，觸發setChunk，將chunk變為chunk+1，並且因為state改變，因此組件觸發重新渲染 */}
-            <a className="btn btn-primary float-right" onClick={() => setChunk(chunk + 1)}>Older Posts &rarr;</a>
+            <p className="btn btn-primary float-right" onClick={() => setChunk(chunk + 1)}>Older Posts &rarr;</p>
           </div>
         </div>
       </div>
