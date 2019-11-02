@@ -8,7 +8,7 @@ const Comment = (props) => {
             <h5>{data.fields.userId}</h5>
             <p>{data.fields.content}</p>
             {data.fields.hasOwnProperty("reply")=="" ? "" : <p style={{fontSize: "18px", color: "#888888", background: "#E3E3E3", padding: "20px", margin: "0", maxWidth: "550px"}}>版主: {data.fields.reply}</p>}
-            <span style={{float: "right", fontSize: "18px", color: "#888888"}}>Hong edited on {data.sys.createdAt.split('T').shift().split('-').join('/')}</span>
+            <span style={{float: "right", fontSize: "18px", color: "#888888"}}>edited on {data.sys.createdAt.split('T').shift().split('-').join('/')}</span>
         </div>
     </div>
 )}
